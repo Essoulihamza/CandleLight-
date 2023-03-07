@@ -10,6 +10,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\PostsResource;
 use App\Http\Requests\StorePostRequest;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -20,6 +21,7 @@ class PostController extends Controller
     public function index()
     {
         return PostsResource::collection(Post::all());
+        // return Post::with('comment')->all();
     }
 
     public function showMine()

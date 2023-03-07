@@ -18,6 +18,6 @@ class CategoryController extends Controller
     }
     public function show(Category $category)
     {
-        return PostsResource::collection($category->posts);
+        return PostsResource::collection($category->posts());
     }
 }

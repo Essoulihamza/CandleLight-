@@ -17,8 +17,12 @@ class PostsResource extends JsonResource
     public function toArray(Request $request): array
     {
         $categories = [];
+        $comments = [];
         foreach ($this->categories as $category) {
             array_push($categories, $category->name);           
+        }
+        foreach ($this->comment as $comment) {
+            array_push($comments, $comment);           
         }
         return [
             'id' => (string)$this->id,
@@ -35,8 +39,9 @@ class PostsResource extends JsonResource
                 'user id' => (string)$this->user->id,
                 'user name' => $this->user->user_name,
                 'user image' => $this->user->image,
-                'categories' => $categories
-            ]
+                'categories' => $categories,
+            ],
+            'comments' => $comments
         ];
     }
 }
