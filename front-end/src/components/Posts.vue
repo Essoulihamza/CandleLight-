@@ -1,5 +1,7 @@
 <template>
-    <div class="flex flex-col justify-center items-center space-y-36 px-6 md:px-6 overflow-scroll">
+    <div class="flex flex-col justify-center items-center space-y-52 px-6 md:px-6">
+        <Post />
+        <Post />
         <Post />
         <Post />
     </div>

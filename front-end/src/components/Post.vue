@@ -20,8 +20,7 @@
             <!-- user info -->
             <div id="user-info" class="flex w-full justify-between items-center">
                 <div class="flex items-center space-x-3">
-                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80"
-                        alt="user-image" class="rounded-full border-2 border-stone-50" width="50">
+                    <div class="bg-[url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80')] bg-cover bg-center w-16 h-16 rounded-full border-2  border-stone-50"> <!-- user image--> </div>
                     <div>
                         <p class="text-sm  md:text-lg text-stone-300">Oussama Belkadi</p>
                         <p class="text-xs text-stone-300 opacity-60">on 23-02-2023</p>
@@ -56,7 +55,7 @@
                             class="absolute left-6 w-4 h-4 rounded-full bg-cover bg-center border border-stone-50
                                     bg-[url('https://imageio.forbes.com/specials-images/imageserve/61688aa1d4a8658c3f4d8640/Antonio-Juliano/0x0.jpg?format=jpg&width=960')]">
                         </div>
-                        <p class="text-[8px] text-slate-200 pl-7">Hamza and 119 <span
+                        <p class="text-[10px] text-slate-200 pl-7">Hamza and 119 <span
                                 class="underline decoration-from-font text-primary cursor-pointer font-semibold">ohters</span>
                             flame this post</p>
                     </div>
@@ -84,15 +83,12 @@
             
         </div>
         <!-- post comments -->
-        <div class="absolute bg-stone-800 w-full  top-[100.1%] left-0 border-b rounded-b-lg z-0 p-2 divide-y divide-stone-50 divide-current space-y-3">
+        <div class="absolute bg-stone-800 w-full px-7  top-[100.1%] left-0 border-b rounded-b-lg z-0 p-2 divide-y divide-stone-50 divide-current space-y-3">
             <!-- comment -->
                 <div class="space-y">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-2">
-                            <div>
-                                <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80"
-                                    alt="user-image" class="rounded-full" width="34">
-                            </div>
+                            <div class="bg-[url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80')] bg-cover bg-center w-10 h-10 rounded-full border-2  border-stone-50"> <!-- user image--> </div>
                             <div class="flex space-x-2 items-center">
                                 <p class=" text-sm text-stone-200">user name</p>
                                 <p class="text-[10px] text-stone-300 opacity-60">on 27-01-2021</p>
@@ -110,9 +106,9 @@
 
 
                     </div>
-                <p class="text-xs text-stone-200 pl-11">Lorem ipsum,
+                <p class="text-xs text-stone-200 pl-12">Lorem ipsum,
                     officiis distinctio perspiciar!</p>
-                <div class="w-full flex items-center pl-11 space-x-1 cursor-pointer">
+                <div class="w-full flex items-center pl-12 space-x-1 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="15" height="15" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d6d3d1" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
@@ -120,22 +116,31 @@
                     <p class="text-xs text-stone-300">13</p>
                 </div>
             </div>
+            <AddComment />
     </div>
 </div>
 </template>
 
 <script>
+import AddComment from './AddComment.vue';
 export default {
     name: 'Post',
+    components: {
+        AddComment,
+    },
     data(){
         return {
             editPost: false,
+            like: false, 
         }
     },
     methods: {
         toggleEditPostMenu(){
             this.editPost = !this.editPost;
         },
+        activeLike(){
+            this.like = !this.like;
+        }
     }
 }
 </script>

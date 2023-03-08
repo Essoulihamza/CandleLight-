@@ -19,7 +19,7 @@
                 <input type="password" name="password" placeholder="Confirm password" class="h-10 bg-stone-900 rounded text-sm text-stone-200 outline-none pl-4" >
             </div>
         </div>
-        <input type="submit" class="bg-stone-50 text-stone-900 py-2 px-12 rounded">
+        <input type="submit" class="bg-stone-50 text-stone-900 py-2 px-12 rounded hover:brightness-75 cursor-pointer" value="SignUp">
     </form>
 </template>
 

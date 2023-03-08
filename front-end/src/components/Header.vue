@@ -1,12 +1,12 @@
 <template>
-    <header class="grid grid-cols-3 justify-between content-center items-center border border-slate-50 border-transparent bg-main  py-3 px-5 font-main
+    <header class="fixed top-0 left-0 w-full z-20  grid grid-cols-3 justify-between content-center items-center border border-slate-50 border-transparent bg-main  py-3 px-5 font-main
                     md:grid-cols-3 md:grid-rows-1 md:px-20 rounded-b-2xl pb-2 border-b-primary">
         <div class="flex justify-between w-full justify-self-start">
             <span class="text-primary">CandleLight</span>
         </div>
         <div class="justify-self-center w-full">
             <input
-                class="w-full h-10 bg-stone-800 text-stone-100 border-current hover:border rounded-full py-1 px-2 text-sm outline-none transition-all delay-200 duration-500"
+                class="w-full h-10 bg-stone-800 text-stone-100 border-current hover:border rounded-full py-1 px-3 text-sm outline-none transition-all delay-200 duration-500"
                 type="text" 
                 placeholder="search Candle"
                 name="search"
