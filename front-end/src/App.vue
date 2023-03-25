@@ -1,11 +1,13 @@
 <template>
-  <Header />
-  <div class="grid grid-cols-4 justify-between mt-20 px-20">
-    <SideBar />
-    <Posts class="col-span-2" />
-    <SignUp />
-  </div>
-  <Navigator />
+  <Header @PopUp="togglePopUp()" />
+  <div :class="{'blur-md select-none pointer-events-none': popUpActive}">
+      <div class="grid grid-cols-1 justify-between mt-20 px-1 lg:px-20 lg:grid-cols-4">
+          <SideBar />
+          <Posts  class="lg:col-span-2" />
+          <SignUp />
+      </div>
+      <Navigator />
+  </div>  
 </template>
 
 <script>
@@ -21,7 +23,17 @@ export default{
     Posts,
     SideBar,
     SignUp,
-    Navigator
+    Navigator,
+  },
+  data(){
+    return {
+      popUpActive: false
+    }
+  },
+  methods: {
+    togglePopUp(){
+      this.popUpActive = !this.popUpActive
+    }
   }
 }
 </script>

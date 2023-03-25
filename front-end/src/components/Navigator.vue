@@ -1,7 +1,7 @@
 <template>
-    <div class="fixed right-20  bottom-10" >
-        <div @mouseleave="toggleNav" class="absolute flex transition-all duration-700 ease-out flex-col items-center  w-16  h-14 rounded-full bottom-1 -z-10  bg-stone-900 space-y-8"
-             :class="{'h-60 py-4 bg-stone-200': On}">
+    <div class="hidden fixed right-20  bottom-10 md:block" @mouseout="toggleNav(0)"  >
+        <div class="absolute flex transition-all duration-700 ease-out flex-col items-center  w-16  h-14 rounded-full bottom-1 -z-10  bg-stone-200 space-y-8"
+             :class="{'h-60 py-4': On}">
             <svg class="cursor-pointer" width="30" height="30" fill="none" stroke="#292524" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z"></path>
                 <path d="M12 8v8"></path>
@@ -17,7 +17,7 @@
             </svg>
 
         </div>
-        <div @click="toggleNav" class="w-16 h-16 flex justify-center items-center rounded-full bg-stone-900 border border-stone-100 cursor-pointer">
+        <div @mouseover="toggleNav(1)" class="w-16 h-16 flex justify-center items-center rounded-full bg-stone-900 border border-stone-100 cursor-pointer">
             <svg width="40" height="40" fill="none" stroke="#41bcff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z"></path>
                 <path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"></path>
@@ -36,8 +36,11 @@ export default {
         }
     },
     methods: {
-        toggleNav(){
-            this.On = !this.On;
+        toggleNav(open){
+            if(open) {
+                this.On = true;
+            }
+            else this.On = false;
         }
     }
 }

@@ -31,14 +31,14 @@ class PostsResource extends JsonResource
                 'content' => $this->content,
                 'image' => $this->image,
                 'likes_count' => count($this->like),
-                'Comment_count' => count($this->comment),
+                'Comments_count' => count($this->comment),
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
             ],
             'relationships' => [
-                'user id' => (string)$this->user->id,
-                'user name' => $this->user->user_name,
-                'user image' => $this->user->image,
+                'user_id' => (string)$this->user->id,
+                'user_name' => $this->user->user_name,
+                'user_image' => $this->user->image,
                 'categories' => $categories,
             ],
             'comments' => $comments

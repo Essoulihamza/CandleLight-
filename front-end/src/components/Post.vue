@@ -1,6 +1,6 @@
 <template>
     <!-- post container -->
-    <div class="relative max-w-xl">
+    <div class="relative">
         <!-- post inner container -->
         <div
             class="w-full flex flex-col space-y-6 bg-main px-7 pt-1 pb-3 rounded-t-lg  border border-x-stone-400 border-b border-primary relative">
@@ -20,10 +20,11 @@
             <!-- user info -->
             <div id="user-info" class="flex w-full justify-between items-center">
                 <div class="flex items-center space-x-3">
-                    <div class="bg-[url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80')] bg-cover bg-center w-16 h-16 rounded-full border-2  border-stone-50"> <!-- user image--> </div>
+                    <div class="bg-[url(${User.image})] bg-cover bg-center w-16 h-16 rounded-full border-2  border-stone-50"
+                         :style="{ backgroundImage: `url(${User.image})` }"> <!-- user image--> </div>
                     <div>
-                        <p class="text-sm  md:text-lg text-stone-300">Oussama Belkadi</p>
-                        <p class="text-xs text-stone-300 opacity-60">on 23-02-2023</p>
+                        <p class="text-sm  md:text-lg text-stone-300">User.name</p>
+                        <p class="text-xs text-stone-300 opacity-60">on {{ Post.creationDate }}</p>
                     </div>
                 </div>
                 <div @click="toggleEditPostMenu" class="justify-self-end cursor-pointer" :class="{'hidden': editPost}">
@@ -37,11 +38,10 @@
             </div>
             <!-- post content -->
             <div id="post-info" class="space-y-3">
-                <h2 class="text-stone-50 text-2xl font-bold">new idea</h2>
-                <p class="text-stone-300 font-light text-sm">Lorem r sit amet m eos doloremque?</p>
-                <img src="https://cdn.pixabay.com/photo/2018/01/24/17/33/light-bulb-3104355__480.jpg" alt="Post image"
-                    class="rounded">
-                <div class="flex">
+                <h2 class="text-stone-50 text-2xl font-bold">{{ Post.title }}</h2>
+                <p class="text-stone-300 font-light text-sm">{{ Post.content }}</p>
+                <img :src="Post.image" alt="Post image" class="rounded">
+                <!-- <div class="flex">
                     <div class="flex relative items-center">
                         <div
                             class="w-4 h-4 rounded-full bg-cover bg-center border border-stone-50
@@ -59,7 +59,7 @@
                                 class="underline decoration-from-font text-primary cursor-pointer font-semibold">ohters</span>
                             flame this post</p>
                     </div>
-                </div>
+                </div> -->
 
             </div>
             <!-- post reactions -->
@@ -72,12 +72,12 @@
                         <path
                             d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z" />
                     </svg>
-                    <p>120</p>
+                    <p>{{ Post.likeCount }}</p>
                 </div>
                 <span class="h-5 w-[0.5px] bg-stone-50"></span>
                 <div class="flex items-center space-x-3 text-stone-300 cursor-pointer">
                     <p>comments</p>
-                    <p>28</p>
+                    <p>{{ Post.CommentsCount }}</p>
                 </div>
             </div>
             
@@ -128,8 +128,23 @@ export default {
     components: {
         AddComment,
     },
+    props: {
+        post: Object
+    },
     data(){
         return {
+            Post: {
+                title: this.post.attributes.title,
+                content: this.post.attributes.content,
+                image: this.post.attributes.image,
+                likeCount: this.post.attributes.likes_count,
+                CommentsCount: this.post.attributes.Comments_count,
+                creationDate: this.post.attributes.created_at,
+            },
+            User: {
+                name: this.post.relationships.user_name,
+                image: this.post.relationships.user_image
+            },
             editPost: false,
             like: false, 
         }
