@@ -33,12 +33,14 @@ class UserController extends Controller
 
     public function SignUp(StoreUserRequest $request) {
         $request->validated($request->all());
+        $img = time()  . '.' . $request->image->extension();
+        $request->image->move(dirname(base_path()) . '\FRONT-END\src\assets\images\User', $img);
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'user_name' => $request->user_name,
             'birth_date' => $request->birth_date,
-            'image' => $request->image,
+            'image' => $img,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]); 
@@ -53,5 +55,9 @@ class UserController extends Controller
         return $this->success([
             'message' => 'You have successfully been logged out and your token has been deleted',
         ]);
+    }
+    
+    public function get() {
+        return Auth::user();
     }
 }

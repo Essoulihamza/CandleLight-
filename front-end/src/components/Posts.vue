@@ -1,0 +1,36 @@
+<template>
+    <div class="flex flex-col justify-center items-center space-y-56 px-3 lg:px-6">
+        <AddPost />
+        <Post v-for="post in Posts" :key="post.id" :data="post" />
+    </div>
+</template>
+
+<script>
+import axios from 'axios'
+import AddPost from './AddPost.vue'
+import Post from './Post.vue'
+export default{
+    name: 'Posts',
+    components: {
+        Post,
+        AddPost
+    },
+    data(){
+        return {
+            Posts: [],
+            dataLoaded: false
+        }
+    },
+    methods: {
+        async getPosts(){
+            let response = await axios.get('http://CandleLight.com/api/posts');
+            this.Posts = response.data.data;
+            console.log(this.Posts);
+            this.dataLoaded = true;
+        }
+    },
+    created(){
+        this.getPosts()
+    },
+}
+</script>

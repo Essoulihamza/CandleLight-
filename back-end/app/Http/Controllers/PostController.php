@@ -38,7 +38,6 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $request->validated($request->all());
-
         $img = time() . '-' . $request->name . '.' . $request->image->extension();
         $request->image->move(dirname(base_path()) . '\front-end\src\assets\images\Posts', $img);
 

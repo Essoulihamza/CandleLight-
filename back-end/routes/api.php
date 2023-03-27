@@ -16,6 +16,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/Logout', [UserController::class, 'Logout']);
     Route::patch('/update/{user}', [UserController::class, 'update']);
     Route::delete('/delete/{user}', [UserController::class, 'destroy']);
+    Route::get('/get', [UserController::class, 'get'] );
     
     // post ::
     Route::resource('/posts', PostController::class);
