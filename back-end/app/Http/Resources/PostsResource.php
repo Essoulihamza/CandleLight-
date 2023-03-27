@@ -25,7 +25,7 @@ class PostsResource extends JsonResource
             array_push($comments, $comment);           
         }
         return [
-            'id' => (string)$this->id,
+            'id' => (int)$this->id,
             'attributes' => [
                 'title' => $this->title,
                 'content' => $this->content,

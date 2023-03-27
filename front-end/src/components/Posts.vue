@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-center items-center space-y-52 px-3 lg:px-6">
         <AddPost />
-        <Post v-for="post in Posts" :key="post.id" :post="post" />
+        <Post v-for="post in Posts" :key="post.id" :data="post" />
     </div>
 </template>
 
@@ -17,13 +17,16 @@ export default{
     },
     data(){
         return {
-            Posts: []
+            Posts: [],
+            dataLoaded: false
         }
     },
     methods: {
         async getPosts(){
-            let response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-            this.Posts = response.data;
+            let response = await axios.get('http://CandleLight.com/api/posts');
+            this.Posts = response.data.data;
+            console.log(this.Posts);
+            this.dataLoaded = true;
         }
     },
     created(){

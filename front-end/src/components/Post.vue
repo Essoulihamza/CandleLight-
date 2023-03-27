@@ -129,21 +129,21 @@ export default {
         AddComment,
     },
     props: {
-        post: Object
+        data: Object
     },
     data(){
         return {
             Post: {
-                title: this.post.attributes.title,
-                content: this.post.attributes.content,
-                image: this.post.attributes.image,
-                likeCount: this.post.attributes.likes_count,
-                CommentsCount: this.post.attributes.Comments_count,
-                creationDate: this.post.attributes.created_at,
+                title: this.data.attributes.title,
+                content: this.data.attributes.content,
+                image: this.data.attributes.image,
+                likeCount: this.data.attributes.likes_count,
+                CommentsCount: this.data.attributes.Comments_count,
+                creationDate: this.data.attributes.created_at,
             },
             User: {
-                name: this.post.relationships.user_name,
-                image: this.post.relationships.user_image
+                name: this.data.relationships.user_name,
+                image: this.data.relationships.user_image
             },
             editPost: false,
             like: false, 

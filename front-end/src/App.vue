@@ -1,10 +1,11 @@
 <template>
-  <Header @PopUp="togglePopUp()" />
+  <Header @PopUp="togglePopUp" @loggedIn="" />
   <div :class="{'blur-md select-none pointer-events-none': popUpActive}">
       <div class="grid grid-cols-1 justify-between mt-20 px-1 lg:px-20 lg:grid-cols-4">
           <SideBar />
           <Posts  class="lg:col-span-2" />
-          <SignUp />
+          <SignUp v-if="!loggedIn" />
+          <Profile v-if="loggedIn" />
       </div>
       <Navigator />
   </div>  
@@ -27,12 +28,17 @@ export default{
   },
   data(){
     return {
-      popUpActive: false
+      popUpActive: false,
+      loggedIn: true
     }
   },
   methods: {
     togglePopUp(){
       this.popUpActive = !this.popUpActive
+    },
+    logged(){
+      this.popUpActive = false;
+
     }
   }
 }

@@ -14,12 +14,22 @@
         </div>
         <div class="hidden justify-self-end md:block">
             <button
+                v-if="!loggedIn"
                 @click="toggleLoginForm"
                 class="bg-stone-100 text-black font-medium px-10 py-1 rounded-full
                         hover:brightness-75"
             >
             Log In
             </button>
+            <button
+                v-if="loggedIn"
+                @click="toggleLoginForm"
+                class="bg-stone-100 text-black font-medium px-10 py-1 rounded-full
+                        hover:brightness-75"
+            >
+            LogOut
+            </button>
+            
         </div>
         <div @click="toggleMobileMenu" class="justify-self-end md:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="25" height="25" fill="#fff">
@@ -27,7 +37,7 @@
             </svg>
         </div>
     </header>
-    <LoginForm :active="loginPopUp"  @close="toggleLoginForm" />
+    <LoginForm @logged-in="logged" :active="loginPopUp"  @close="toggleLoginForm" />
 </template>
 
 <script>
@@ -40,13 +50,22 @@ export default{
     data(){
         return {
             loginPopUp: false,
-            mobileMenu: false
+            mobileMenu: false,
+            loggedIn: false
         }
+    },
+    emits: {
+        PopUp: null 
     },
     methods: {
         toggleLoginForm(){
             this.loginPopUp = !this.loginPopUp
             this.$emit('PopUp')
+        },
+        logged(){
+            this.loggedIn = true;
+            this.loginPopUp = false;
+            this.$emit('loggedIn')
         }
     }
 }
