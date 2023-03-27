@@ -64,9 +64,16 @@
             </div>
             <!-- post reactions -->
             <div id="post-reactions" class="flex justify-around items-center ">
-                <div class="flex items-center space-x-3 text-stone-300 cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flame" width="25"
-                        height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d6d3d1" fill="none"
+                <div  @click="toggleLike()" class="flex items-center space-x-3 text-stone-300 cursor-pointer">
+                    <svg v-if="!like" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flame" width="30"
+                        height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d6d3d1" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path
+                            d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z" />
+                    </svg>
+                    <svg v-if="like"  xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flame" width="30"
+                        height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="none" fill="#41bcff"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path
@@ -125,20 +132,26 @@
 import AddComment from './AddComment.vue';
 export default {
     name: 'Post',
+    props: {
+        postData : Object
+    },
     components: {
         AddComment,
     },
     data(){
         return {
+            post: {
+                type: Object,
+            },
             editPost: false,
-            like: false, 
+            like: false,
         }
     },
     methods: {
         toggleEditPostMenu(){
             this.editPost = !this.editPost;
         },
-        activeLike(){
+        toggleLike(){
             this.like = !this.like;
         }
     }

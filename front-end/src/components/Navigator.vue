@@ -1,6 +1,6 @@
 <template>
     <div class="fixed right-20  bottom-10" >
-        <div @mouseleave="toggleNav" class="absolute flex transition-all duration-700 ease-out flex-col items-center  w-16  h-14 rounded-full bottom-1 -z-10  bg-stone-900 space-y-8"
+        <div @mouseleave="toggleNav" class="absolute flex transition-all duration-700 ease-out flex-col items-center  w-16  h-14 rounded-full bottom-1 -z-10  bg-stone-200 space-y-8"
              :class="{'h-60 py-4 bg-stone-200': On}">
             <svg class="cursor-pointer" width="30" height="30" fill="none" stroke="#292524" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z"></path>
