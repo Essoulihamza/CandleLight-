@@ -25,20 +25,20 @@ class PostsResource extends JsonResource
             array_push($comments, $comment);           
         }
         return [
-            'id' => (string)$this->id,
+            'id' => (int)$this->id,
             'attributes' => [
                 'title' => $this->title,
                 'content' => $this->content,
                 'image' => $this->image,
                 'likes_count' => count($this->like),
-                'Comment_count' => count($this->comment),
+                'Comments_count' => count($this->comment),
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
             ],
             'relationships' => [
-                'user id' => (string)$this->user->id,
-                'user name' => $this->user->user_name,
-                'user image' => $this->user->image,
+                'user_id' => (string)$this->user->id,
+                'user_name' => $this->user->user_name,
+                'user_image' => $this->user->image,
                 'categories' => $categories,
             ],
             'comments' => $comments
