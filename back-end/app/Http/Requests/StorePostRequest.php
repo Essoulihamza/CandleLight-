@@ -26,6 +26,7 @@ class StorePostRequest extends FormRequest
             'content' => ['required', 'max:2550'],
             'image' => ['max:5048'],
             'catrgory' => ['string'],
+            'categories' => ['array']
         ];
     }
 }

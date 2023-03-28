@@ -45,4 +45,12 @@ class LikeController extends Controller
             	    ->where('user_id', Auth::user()->id);
         $like->delete();
     }
+    public function isLiked(Post $post)
+    {
+        $like = Like::where('post_id' , $post->id)
+                     ->where('user_id', Auth::user()->id)
+                     ->get();
+        return ($like->isEmpty()) ? 0 : 1; 
+
+    }
 }

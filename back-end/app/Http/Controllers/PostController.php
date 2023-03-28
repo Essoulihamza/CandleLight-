@@ -47,7 +47,7 @@ class PostController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'image' => $img
-        ]);
+        ])->categories()->attach($request->categories);
 
         return new PostsResource($post);
     }

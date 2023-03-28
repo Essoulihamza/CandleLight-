@@ -23,7 +23,7 @@
                     <div class="bg-[url(${User.image})] bg-cover bg-center w-16 h-16 rounded-full border-2  border-stone-50"
                          :style="{ backgroundImage: `url(${User.image})` }"> <!-- user image--> </div>
                     <div>
-                        <p class="text-sm  md:text-lg text-stone-300">User.name</p>
+                        <p class="text-sm  md:text-lg text-stone-300">{{ User.name }}</p>
                         <p class="text-xs text-stone-300 opacity-60">on {{ Post.creationDate }}</p>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
             </div>
             <!-- post reactions -->
             <div id="post-reactions" class="flex justify-around items-center ">
-                <div class="flex items-center space-x-3 text-stone-300 cursor-pointer">
+                <div @click="toggleLike" class="flex items-center space-x-3 text-stone-300 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flame" width="25"
                         height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d6d3d1" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -116,12 +116,13 @@
                     <p class="text-xs text-stone-300">13</p>
                 </div>
             </div>
-            <AddComment />
+            <AddComment :post-id="Post.id" />
     </div>
 </div>
 </template>
 
 <script>
+import axios from 'axios';
 import AddComment from './AddComment.vue';
 export default {
     name: 'Post',
@@ -134,6 +135,7 @@ export default {
     data(){
         return {
             Post: {
+                id: this.data.id,
                 title: this.data.attributes.title,
                 content: this.data.attributes.content,
                 image: this.data.attributes.image,
@@ -153,8 +155,34 @@ export default {
         toggleEditPostMenu(){
             this.editPost = !this.editPost;
         },
-        activeLike(){
-            this.like = !this.like;
+        async isLiked(){
+            let token = localStorage.getItem('token');
+            let config = {
+                headers:{
+                    'Authorization': 'Bearer ' + token
+                }
+            }
+            let request = await axios.get(`http://CandleLight.com/api/isLiked/${this.Post.id}`, config)
+            this.like = request.data;
+
+        },
+        async toggleLike(){
+            let token = localStorage.getItem('token');
+            let config = {
+                headers:{
+                    'Authorization': 'Bearer ' + token
+                }
+            }
+            if(!this.like){
+                let request = await axios.post(`http://CandleLight.com/api/likes/${this.Post.id}`, {}, config)
+                this.like = true
+                this.Post.likeCount++
+            }else{
+                let request = await axios.delete(`http://CandleLight.com/api/likes/${this.Post.id}`, config)
+                this.like = false
+                console.log(request);
+                this.Post.likeCount--
+            }
         }
     }
 }

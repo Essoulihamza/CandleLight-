@@ -25,19 +25,14 @@
         </div>
         <input type="submit" class="bg-stone-50 text-stone-900 py-2 px-12 rounded hover:brightness-75 cursor-pointer" value="SignUp">
     </form>
-    <Profile v-if="Authenticated" />
 </template>
 
 <script>
-import Profile from './Profile.vue'
 import { mapActions, mapState } from 'vuex'
 export default {
     name: 'SignUp',
     computed: {
         ...mapState(['Authenticated'])
-    },
-    components: {
-        Profile
     },
     data(){
         return {
